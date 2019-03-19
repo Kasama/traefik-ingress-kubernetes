@@ -1,0 +1,19 @@
+version: '2.1'
+
+services:
+  traefik:
+    image: traefik:1.6
+    ports:
+      - 8000:8000
+      - 8080:8080
+    volumes:
+      - ./traefik.toml:/traefik.toml:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+  webserver1:
+    image: nginx
+    volumes:
+      - ./webserver1.html:/usr/share/nginx/html/index.html:ro
+  webserver2:
+    image: nginx
+    volumes:
+      - ./webserver2.html:/usr/share/nginx/html/index.html:ro
